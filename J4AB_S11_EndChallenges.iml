@@ -89,7 +89,6 @@ Considerations
 
 Script Log
 
-
  */                                                        
 
 import java.util.Scanner;
@@ -148,6 +147,7 @@ public class J4AB_S11_C2 {
 CHALLENGE THREE
  
 /*
+
 Write a program in which you define a number between 1 - 100 and the program tries to guess it .
 
 Every time it guesses wrong, you type "wrong" and it re-guesses. When you type "correct" it should end.
