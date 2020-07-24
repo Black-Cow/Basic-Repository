@@ -1,11 +1,172 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-</module>
+import java.util.Scanner;
+import java.lang.*;
+import java.util.*;
+
+/// THIS IS THE FINAL GUEST LIST.
+
+public class GuestList_FINAL_ArrayList {
+    public static void main(String[] args) {
+        // Setup for array, setup for scanner
+        ArrayList<String> guests = new ArrayList<String>();
+        Scanner scanner = new Scanner(System.in);
+
+        // A method to put these here so we don't always have to add guests. This method automatically inserts five guests into the guest list.
+        InsertNames(guests);
+
+        // Do-while loop to make sure that this menu screen shows up every time asking us what we want to do.
+        // It also makes certain that the menu shows up when we initially run the program.
+        do {
+            displayMenu(guests);
+
+            // This must remain in main for the rest of the program to reference it.
+            int option = getOption();
+
+            // If loop that will allow people to add guests
+            if (option == 1) {
+                AddGuest(guests);
+
+            } else if (option == 2) {
+                RemoveGuest(guests);
+
+            } else if (option == 3) {
+                RenameGuest(guests);
+
+            } else if (option == 4) {
+                ShfitArrayGuest(guests);
+
+            } else if (option == 5) {
+                System.out.println("Exiting...");
+                break;
+            }
+
+        } while (true);
+    }
+
+    // This displays the starting menu
+    public static void displayMenu(ArrayList<String> SentArr) {
+        System.out.println("-------------");
+        System.out.println(" - Guests & Menu - ");
+        GuestsMethod(SentArr); // Makes all null values equal to --
+        System.out.println();
+        System.out.println("1 - Add Guest");
+        System.out.println("2 - Remove Guest");
+        System.out.println("3 - Rename guest");
+        System.out.println("4 - Insert new guest at certain position");
+        System.out.println("5 - Exit");
+        System.out.println();
+    }
+
+    // This inserts names into the array so we don't have to add guests everytime.
+    public static ArrayList<String> InsertNames(ArrayList<String> InsertNames) {
+
+        // GuestMethod is recieving this names, you can test this by commenting out all names and seeing that GuestMethod
+        // returns "The guest list is empty".
+        InsertNames.add("Jacob");
+        InsertNames.add("Edward");
+        InsertNames.add("Rose");
+        InsertNames.add("Mollly");
+        InsertNames.add("Christopher");
+
+        return InsertNames;
+    }
+
+    // This prints all the guests on the guest list and also adjusts the guest list when a guest is removed
+    public static ArrayList<String> GuestsMethod(ArrayList<String> GuestMethodArr) {
+        System.out.println();
+
+        // To display the guest list and scan for if the list is empty, we created a boolean variable that will either
+        // be true or false. If false, the else-statement will be used and the program will print the list.
+        boolean ans = GuestMethodArr.isEmpty();
+
+        if (ans == true)
+            System.out.println("The List is empty");
+        else
+            for (int i = 0; i < GuestMethodArr.size();i++)
+            {
+                System.out.println((i + 1) + ". " + GuestMethodArr.get(i));
+            }
+
+        return GuestMethodArr;
+    }
+
+    // I've really got no idea what this does or why I need a method but the course I'm taking said to create a method for this.
+    // It gets the desired option from the user, as in to add a guest, remove a guest, etc.
+    static int getOption() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Option: ");
+        int Option = scanner.nextInt();
+
+        return Option;
+    }
+
+    // Allows users to add guests
+    public static ArrayList<String> AddGuest(ArrayList<String> AddArr) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Name: ");
+        AddArr.add(scanner.nextLine());
+
+        return AddArr;
+    }
+
+    public static ArrayList<String> RemoveGuest(ArrayList<String> RemoveArr) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Number of guest: ");
+        int input = scanner.nextInt();
+        int number = input - 1;
+
+        // While loop to look for numbers that fit within array's range
+        while (number < -2 || number > RemoveArr.size() ) {
+            System.out.println("Trying to pull a fast one? No more funny games, give me a real number to work with.");
+            System.out.println("What is the number of the guest");
+            input = scanner.nextInt();
+            number = input - 1;
+        }
+
+        RemoveArr.remove(number);
+
+        return RemoveArr;
+    }
+
+    public static ArrayList<String> RenameGuest(ArrayList<String> RenamedGuests) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Number of guest: ");
+        int input = scanner.nextInt();
+        int number = input - 1;
+
+        // While loop to look for numbers that fit within array's range
+        while (number < -2 || number > RenamedGuests.size() ) {
+            System.out.println("Trying to pull a fast one? No more funny games, give me a real number to work with.");
+            System.out.println(" ");
+            System.out.println("What is the number of the guest");
+            input = scanner.nextInt();
+            number = input - 1;
+        }
+
+        System.out.println("What would you like the guest's name to be?");
+        String NewName = scanner.next();
+        RenamedGuests.set(number, NewName);
+
+        return RenamedGuests;
+    }
+
+    // The final method which I am struggling with.
+    public static ArrayList<String> ShfitArrayGuest(ArrayList<String> ArraytoShift) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Name: ");
+        String ShiftName = scanner.next();
+        System.out.println("Position: ");
+        int ShiftIndex = scanner.nextInt();
+        // Calculating the "altered" shift index. Subtracting 1 so that it gets the proper value.
+        int AltShiftIndex = ShiftIndex - 1;
+
+        ArraytoShift.add(AltShiftIndex, ShiftName);
+
+        return ArraytoShift;
+    }
+}
