@@ -1,5 +1,23 @@
 CHALLENEGE ONE
 
+/*
+
+Write a program for a school which produces some statistics on the student's exam results.
+The teachers are to input the test results which will then be stored in an array.
+
+The program should output two things:
+
+1. Each student's score and percentage for the exam.
+2. The mean score and percentage of the exam.
+
+Considerations:
+
+1. Have the program ask how many students took the exam, set the array cap to that.
+2. Have the program know what the max possible score is.
+3. You can refer to each student as a number if you want e.g Student 1: 98%
+
+ */
+
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -58,6 +76,21 @@ public class J4AB_S11_C1 {
 
 
 CHALLENGE TWO 
+                                                 
+/*
+
+Write a program that asks people true or false questions and displays the answer to the user.
+At the end of the program, display the user's score.
+
+Considerations
+1. Use three arrays for this: A string array for holding the questions, a boolean array for the answers, another boolean array for the user's answers
+2. You can use nextBoolean() to get the next answer
+3. Because we have three separate arrays that need to work together, we can reference them consistently by using indexes.
+
+Script Log
+
+
+ */                                                        
 
 import java.util.Scanner;
 
@@ -113,7 +146,14 @@ public class J4AB_S11_C2 {
               
               
 CHALLENGE THREE
-              
+ 
+/*
+Write a program in which you define a number between 1 - 100 and the program tries to guess it .
+
+Every time it guesses wrong, you type "wrong" and it re-guesses. When you type "correct" it should end.
+
+ */                
+                                                       
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
