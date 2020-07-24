@@ -1,11 +1,154 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-</module>
+CHALLENEGE ONE
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class J4AB_S11_C1 {
+    public static void main(String[] args) {
+
+        int testSize;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("How many students took the exam?");
+        testSize = scanner.nextInt();
+
+        double[] studentScores = new double [testSize];
+
+        for(int counter = 0; counter < testSize; counter++) {
+            System.out.println("What was the score of Student " + (counter + 1) +"?");
+            studentScores[counter] = scanner.nextDouble();
+        }
+
+        scanner.close();
+
+        System.out.println("The scores were");
+        for(int counter = 0; counter < testSize; counter++) {
+            System.out.println(studentScores[counter]);
+        }
+
+        // Calculating Median //
+
+            Arrays.sort(studentScores);
+            double median;
+            if (studentScores.length % 2 == 0)
+                median = (studentScores[studentScores.length/2] + studentScores[studentScores.length/2 - 1])/2;
+            else
+                median = studentScores[studentScores.length/2];
+
+
+        // Calculating Sum & Average //
+
+            int sum = 0; // initialize sum
+            int i;
+            double average;
+
+            for (i = 0; i < studentScores.length; i++) {
+                sum += studentScores[i];
+            }
+            average = sum / testSize ;
+
+
+        System.out.println("Here are some stats on the scores");
+        System.out.println("The median of your scores is: " + median);
+        System.out.println("The average of your scores is: " + average);
+
+    }
+}
+
+
+
+CHALLENGE TWO 
+
+import java.util.Scanner;
+
+public class J4AB_S11_C2 {
+    public static void main(String[] args) {
+
+        // Initial instructions to user //
+        System.out.println("Answer either 'True or 'False' to all of the following." );
+
+        // Array to store questions //
+        String[] questions = new String[3];
+        questions[0] = "Is the sky blue?";
+        questions[1] = "Is the grass green?";
+        questions[2] = "What is the airspeed velocity of an unladen swallow?";
+
+        // Array to store User's Answers //
+        String[] userAnswers = new String [3];
+
+        // Setting up scanner for the user input //
+        Scanner scanner = new Scanner(System.in);
+
+        for(int counter = 0; counter < 3; counter++) {
+            System.out.println(questions[counter]);
+
+            while(true){
+                userAnswers[counter] = scanner.nextLine();
+
+                // Use this to check if it is yes or no
+                if ("True".equalsIgnoreCase(userAnswers[counter])){
+                    // Process True
+                    break;
+                }
+                else if ("False".equalsIgnoreCase(userAnswers[counter])){
+                    // Process False
+                    break;
+                }
+                else {
+                    // Ask to provide True or False as answer
+                    System.out.println("Please enter either true or false.");
+                }
+            }
+        }
+
+        // Final Output //
+        System.out.println("Your answers were.");
+        for(int counter = 0; counter < 3; counter++) {
+            System.out.println( questions[counter] + "  |  " + userAnswers[counter] );
+        }
+    }
+}
+              
+              
+              
+              
+CHALLENGE THREE
+              
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class J4AB_S11_C3 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int oMin = 0;
+        int oMax = 101;
+        int correctAnswer;
+        String userReply;
+
+        System.out.println("What's the lucky number, kiddo?");
+        correctAnswer = scanner.nextInt();
+
+        do {
+
+            int randomNumber = ThreadLocalRandom.current().nextInt(oMin, oMax);
+
+            System.out.println("Is " + randomNumber + " the right answer?");
+            userReply = scanner.next();
+
+            if ("Higher".equalsIgnoreCase(userReply)) {
+                oMin = randomNumber;
+            }
+
+            if ("Lower".equalsIgnoreCase(userReply)) {
+                oMax = randomNumber;
+            }
+
+        } while (!userReply.equalsIgnoreCase("Correct"));
+
+        System.out.println("We finally did it! " + correctAnswer + " was the correct answer.");
+
+        scanner.close();
+    }
+}              
+              
